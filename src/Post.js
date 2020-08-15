@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 
-function Post() {
+function Post({username, caption, imageUrl}) {
   return (
     <div className="post">
       <div className="post__header">
@@ -10,16 +10,16 @@ function Post() {
           alt="Vinothkumar"
           src="/static/images/avatar/1.jpg"
         />
-        <h3>Username</h3>
+        <h3>{username}</h3>
       </div>
 
       
       <img
         className="post__image"
-        src="https://i.morioh.com/200623/6c839150.jpg"
+        src={imageUrl}
       />
       <h4 className="post__text">
-        <strong>vinoth_6194</strong> :Looks good..Way to go
+        <strong>{username}</strong> :{caption}
       </h4>
     </div>
   );
