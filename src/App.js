@@ -24,7 +24,10 @@ function App() {
 
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
-      setPosts(snapshot.docs.map((doc) => doc.data()));
+      setPosts(snapshot.docs.map(doc => ({
+        id:doc.id,
+        post:doc.data()
+      })));
     });
   }, []);
   return (
@@ -37,8 +40,9 @@ function App() {
         ></img>
       </div>
       <h1>Instagram Clone | Vinothkumar S 🔥 🔥 🔥 </h1>
-      {posts.map((post) => (
+      {posts.map(({id,post}) => (
         <Post
+          key ={id}
           username={post.username}
           caption={post.caption}
           imageUrl={post.imageUrl}
