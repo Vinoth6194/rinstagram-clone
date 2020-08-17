@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Post from "./Post";
-import { db } from "./Firebase";
+import { db, auth } from "./Firebase";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
@@ -36,8 +36,12 @@ function App() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
-
-  const signup = (event) => {};
+//!Alert is not working on a fresh loading as per the tutorial
+  const signup = (event) => {
+    event.preventDefault();
+    auth.createUserWithEmailAndPassword(email,password)
+    .catch((error) => alert(error.message))
+  };
 
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
