@@ -33,13 +33,11 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  const [username,setUsername] = useState();
-  const [password,setPassword] = useState();
-  const [email,setEmail] = useState();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
 
-  const signup = event =>{
-    
-  }
+  const signup = (event) => {};
 
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
@@ -55,12 +53,15 @@ function App() {
     <div className="app">
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <center>
-            <img
-              className="app_headerImage"
-              src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-              alt="Instagram"
-            ></img>
+          <form className="app__signup">
+            <center>
+              <img
+                className="app_headerImage"
+                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                alt="Instagram"
+              ></img>
+            </center>
+
             <Input
               placeholder="Your Name"
               type="text"
@@ -73,14 +74,14 @@ function App() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Input>
-            <Input 
-            placeholder ="Your Password"
-            type = "text"
-            value ={password}
-            onChange ={(e)=>setPassword(e.target.value)}>
-            </Input>
+            <Input
+              placeholder="Your Password"
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
             <Button onClick={signup}>Sign Up</Button>
-          </center>
+          </form>
         </div>
       </Modal>
       <div className="app__header">
