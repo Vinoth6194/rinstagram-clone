@@ -33,9 +33,9 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 //!Alert is not working on a fresh loading as per the tutorial
   const signup = (event) => {
     event.preventDefault();
