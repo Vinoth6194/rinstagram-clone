@@ -36,12 +36,38 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [user,setUser] = useState(null);
 
   const signup = (event) => {
     event.preventDefault();
     auth.createUserWithEmailAndPassword(email,password)
+    .then((authUser) =>{
+      return authUser.user.updateProfile({
+        displayName:username
+      })
+    })
     .catch((error) => alert(error.message))
   };
+
+  useEffect(() =>{
+    //*authUser is coming from firebase by default..
+    const unsubscribe =  auth.onAuthStateChanged((authUser) =>{
+      if(authUser){
+        //has Loggedin
+        console.log(authUser);
+        setUser(authUser);
+
+      }
+      else{
+//Has logged out
+setUser(null);
+      }
+    });
+    return () =>{
+      //Cleanup
+      unsubscribe()
+    };
+  },[user,username]);
 
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
