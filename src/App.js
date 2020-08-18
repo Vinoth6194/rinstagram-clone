@@ -32,6 +32,7 @@ function App() {
 
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openSignIn,setOpenSignIn] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +48,15 @@ function App() {
       })
     })
     .catch((error) => alert(error.message))
+    setOpen(false);
   };
+
+  const signIn = (event) =>{
+    event.preventDefault();
+    auth.signInWithEmailAndPassword(email, password)
+    .catch((error) => alert(error.message));
+    setOpenSignIn(false);
+  }
 
   useEffect(() =>{
     //*authUser is coming from firebase by default..
@@ -114,6 +123,35 @@ setUser(null);
           </form>
         </div>
       </Modal>
+
+      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
+        <div style={modalStyle} className={classes.paper}>
+          <form className="app__signup">
+            <center>
+              <img
+                className="app_headerImage"
+                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                alt="Instagram"
+              ></img>
+            </center>
+
+           
+            <Input
+              placeholder="Your Email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></Input>
+            <Input
+              placeholder="Your Password"
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
+            <Button onClick={signIn}>Sign In</Button>
+          </form>
+        </div>
+      </Modal>
       <div className="app__header">
         <img
           className="app_headerImage"
@@ -123,7 +161,11 @@ setUser(null);
       </div>
       {
         user ?       <Button onClick={() => auth.signOut()}>Logout</Button>
-        :      <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        :<div className = "app__loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+        <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        </div>      
+      
 
 
       }
