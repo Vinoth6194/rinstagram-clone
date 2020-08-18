@@ -121,7 +121,12 @@ setUser(null);
           alt="Instagram"
         ></img>
       </div>
-      <Button onClick={() => setOpen(true)}>Sign Up</Button>
+      {
+        user ?       <Button onClick={() => auth.signOut()}>Logout</Button>
+        :      <Button onClick={() => setOpen(true)}>Sign Up</Button>
+
+
+      }
       <h1>Instagram Clone | Vinothkumar S 🔥 🔥 🔥 </h1>
       {posts.map(({ id, post }) => (
         <Post
