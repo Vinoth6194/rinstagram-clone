@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Post from "./Post";
-import { db } from "./Firebase";
+import { db, auth } from "./Firebase";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
@@ -33,11 +33,16 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-  const signup = (event) => {};
+  const signup = (event) => {
+    event.preventDefault();
+    auth.createUserWithEmailAndPassword(email,password)
+    .catch((err) => alert(err.message));
+  };
+  
 
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
@@ -80,7 +85,7 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Input>
-            <Button onClick={signup}>Sign Up</Button>
+            <Button onClick={signup} type="submit">Sign Up</Button>
           </form>
         </div>
       </Modal>
