@@ -15,16 +15,16 @@ const handleChange = (event) =>{
         setImage(event.target.files[0]);
     }
 }
-// captionHandler =(event) =>{
-//     setCaption(event.target.value);
-// }
+const  captionHandler =(event) =>{
+    setCaption(event.target.value);
+}
 const handleUpload = () =>{
 
 }
 
     return (
         <div>
-            <input type = "text" placeholder = "What's on your mind" value = {caption} onChange ={e => setCaption(e.target.value)}></input>
+            <input type = "text" placeholder = "What's on your mind" value = {caption} onChange ={captionHandler}></input>
             <input type = "file" onChange = {handleChange}></input>
             <Button onClick = {handleUpload}>
                 Upload
