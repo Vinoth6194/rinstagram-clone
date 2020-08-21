@@ -91,7 +91,7 @@ setUser(null);
   }, []);
   return (
     <div className="app">
-     <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
             <center>
@@ -136,7 +136,6 @@ setUser(null);
               ></img>
             </center>
 
-           
             <Input
               placeholder="Your Email"
               type="text"
@@ -159,17 +158,16 @@ setUser(null);
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt="Instagram"
         ></img>
-      </div>
-      {
-        user ?       <Button onClick={() => auth.signOut()}>Logout</Button>
-        :<div className = "app__loginContainer">
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ) : (
+          <div className="app__loginContainer">
             <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-        <Button onClick={() => setOpen(true)}>Sign Up</Button>
-        </div>      
-      
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+        )}
+      </div>
 
-
-      }
       <h1>Instagram Clone | Vinothkumar S 🔥 🔥 🔥 </h1>
       {posts.map(({ id, post }) => (
         <Post
@@ -180,16 +178,14 @@ setUser(null);
         ></Post>
       ))}
 
-       {/* optionals in js
+      {/* optionals in js
       user? */}
 
-    {
-      user?.displayName ?(
-        <ImageUpload  username ={user.displayName}/>
-      ):(
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
         <h3>Sorry, You need to be logged in</h3>
-      )
-    }
+      )}
     </div>
   );
 }
