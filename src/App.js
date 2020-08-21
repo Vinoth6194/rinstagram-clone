@@ -91,7 +91,17 @@ setUser(null);
   }, []);
   return (
     <div className="app">
-      <ImageUpload />
+      {/* optionals in js
+      user? */}
+
+    {
+      user?.displayName ?(
+        <ImageUpload  username ={user.displayName}/>
+      ):(
+        <h3>Sorry, You need to be logged in</h3>
+      )
+    }
+      
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
