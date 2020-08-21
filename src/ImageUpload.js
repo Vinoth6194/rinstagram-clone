@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Button } from "@material-ui/core";
-
+import {db, storage} from './Firebase';
 
 
 
@@ -19,7 +19,17 @@ const  captionHandler =(event) =>{
     setCaption(event.target.value);
 }
 const handleUpload = () =>{
-
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        uploadTask.on(
+            "state_changed",
+            (snapshot) =>{
+                //*Progress Function
+                const progress = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) *100
+                );
+                setProgress(progress);
+            }
+        )
 }
 
     return (
