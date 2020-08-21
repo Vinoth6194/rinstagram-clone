@@ -28,7 +28,12 @@ const handleUpload = () =>{
                 (snapshot.bytesTransferred / snapshot.totalBytes) *100
                 );
                 setProgress(progress);
-            }
+            },
+            (error) =>{
+                //*Error function
+                console.log(error);
+                alert(error.message);
+            },
         )
 }
 
