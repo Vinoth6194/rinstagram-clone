@@ -168,7 +168,8 @@ setUser(null);
         )}
       </div>
 
-      <h1>Instagram Clone | Vinothkumar S 🔥 🔥 🔥 </h1>
+      {/* <h1>Instagram Clone | Vinothkumar S 🔥 🔥 🔥 </h1> */}
+      <div className ="app__posts">
       {posts.map(({ id, post }) => (
         <Post
           key={id}
@@ -177,6 +178,8 @@ setUser(null);
           imageUrl={post.imageUrl}
         ></Post>
       ))}
+      </div>
+      
 
       {/* optionals in js
       user? */}

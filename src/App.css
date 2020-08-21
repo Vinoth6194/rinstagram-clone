@@ -51,3 +51,7 @@
 .app_headerImage{
   object-fit: contain;
 }
+
+.app__posts{
+  padding: 20px;
+}
