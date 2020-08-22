@@ -21,8 +21,9 @@ function Post({ postId,username, caption, imageUrl }) {
         }
     }
   },[postId]);
+
   const postComment = (event) =>{
-    event.preventDefault();
+    //event.preventDefault();
   }
   return (
     <div className="post">
@@ -45,7 +46,7 @@ function Post({ postId,username, caption, imageUrl }) {
         type = "text"
         value ={comment}
         placeholder = "Comment goes here..."
-        onChange = {(event) => setComments(event.target.value)}
+        onChange = {(event) => setComment(event.target.value)}
         />
         <button
         className ="post_button"

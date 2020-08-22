@@ -176,7 +176,7 @@ setUser(null);
           username={post.username}
           caption={post.caption}
           imageUrl={post.imageUrl}
-          postid={id}
+          postId={id}
         ></Post>
       ))}
       </div>
