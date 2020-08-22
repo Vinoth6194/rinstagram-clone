@@ -4,6 +4,7 @@
 
 .app__header {
   position: sticky;
+  z-index:1;
   top:0;
   object-fit: contain;
   background-color: white;
